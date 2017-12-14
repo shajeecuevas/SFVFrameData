@@ -11,6 +11,8 @@ class CharacterSelect extends Component {
   }
 
   render() {
+    let { navigate } = this.props.navigation;
+
     let fighters = Object.keys(Fighters).map(name => {
       let fighter = Fighters[name];
       return (
@@ -21,7 +23,7 @@ class CharacterSelect extends Component {
             <Text note>{ fighter.desc || 'Awakened Talent' }</Text> 
           </Body>
           <Right>
-            <Text note onPress={() => navigate('Home')}>View</Text>
+            <Text note onPress={() => navigate('Fighter', {fighter})}>View</Text>
           </Right>
         </ListItem>
       );
@@ -33,18 +35,48 @@ class CharacterSelect extends Component {
       <Container>
         <Header>
           <Body>
+            <Left/>
             <Title>
               Character Select
             </Title>
+            <Right/>
           </Body>
         </Header>
         <Content>
           <List>
-            { fighters } 
+            {fighters} 
           </List>
         </Content>
       </Container>
     );
+  }
+}
+
+class FighterDetail extends Component {
+  static navigationOptions = {
+    header: null,
+  }
+
+  render() {
+    const { navigate } = this.props.navigation;
+    const { fighter } = this.props.navigation.state.params;
+    return (
+      <Container>
+        <Header>
+          <Left>
+            <Thumbnail square size={80} source={fighter.image} />
+          </Left>
+          <Body>
+            <Title>
+              {fighter.name}
+            </Title>
+          </Body>
+          <Right/>
+        </Header>
+        <Content>
+        </Content>
+      </Container>
+    )
   }
 }
 
@@ -64,4 +96,5 @@ const styles = StyleSheet.create({
 
 export const App = StackNavigator({
   Fighters: {screen: CharacterSelect},
+  Fighter: {screen: FighterDetail},
 });
