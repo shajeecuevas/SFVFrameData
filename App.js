@@ -1,7 +1,15 @@
 //Decide between a list thumbnail, button, or list.
 
+import { StackNavigator } from 'react-navigation';
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Title } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Title, Button } from 'native-base';
+
+// const App = StackNavigator({
+//   Home: { screen: CharacterSelect }
+// });
+
+
 export default class CharacterSelect extends Component {
   render() {
     return (
@@ -17,6 +25,7 @@ export default class CharacterSelect extends Component {
               <Thumbnail square size={80} source={ require('./images/Abigail.png') } />
               <Body>
                 <Text>Abigail</Text>
+                <Button style={styles.view} transparent onPress={() => navigate('Home')}><Text>View</Text></Button>
                 <Text note>Awakened Talent</Text>
               </Body>
             </ListItem>
@@ -208,3 +217,17 @@ export default class CharacterSelect extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+    view: {
+        marginLeft: 250,
+    },
+    cardHeader: {
+        marginTop: 15,
+        fontSize: 20
+    },
+    cardBalance: {
+        fontSize: 15,
+        textAlign: 'center'
+    }
+});
