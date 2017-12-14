@@ -3,11 +3,11 @@
 import { StackNavigator } from 'react-navigation';
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Title, Button } from 'native-base';
+import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Title, Button, Left, Right } from 'native-base';
 
-// const App = StackNavigator({
-//   Home: { screen: CharacterSelect }
-// });
+//  const App = StackNavigator({
+//    Home: { screen: CharacterSelect }
+//  });
 
 
 export default class CharacterSelect extends Component {
@@ -25,9 +25,11 @@ export default class CharacterSelect extends Component {
               <Thumbnail square size={80} source={ require('./images/Abigail.png') } />
               <Body>
                 <Text>Abigail</Text>
-                <Button style={styles.view} transparent onPress={() => navigate('Home')}><Text>View</Text></Button>
-                <Text note>Awakened Talent</Text>
+                <Text note>Awakened Talent</Text> 
               </Body>
+              <Right>
+                <Text note onPress={() => navigate('Home')}>View</Text>
+              </Right>
             </ListItem>
             <ListItem>
               <Thumbnail square size={80} source={ require('./images/Akuma.png') } />
