@@ -59,14 +59,17 @@ class FighterDetail extends Component {
     const { navigate } = this.props.navigation;
     const { fighter } = this.props.navigation.state.params;
     let rows = [];
-    let fighters = fighter[this.props.fighterIndex];
     let { metadata } = fighter.data;
-    fighter.data.forEach((move, i) => {
-        rows.push(
-          <View key={i}>
-            <Text>{ move.metadata }</Text>
-          </View>
-        );
+    let data = Object.keys(fighter.data.attacks).map((attackName) => {
+      let frameData = fighter.data.attacks[attackName];
+      return(
+        <ListItem>
+          <Body>
+            <Text>Attack Name: {attackName}</Text>
+            <Text>Active Frames: {framaData.frames.active}</Text>
+          </Body>
+        </ListItem>
+      )
     });
 
     return (
@@ -83,9 +86,9 @@ class FighterDetail extends Component {
           <Right/>
         </Header>
         <Content>
-          <Text>
-            {metadata.health}
-          </Text>
+        <List>
+          {data}
+        </List>
         </Content>
       </Container>
     )
