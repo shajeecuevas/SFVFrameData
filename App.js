@@ -2,7 +2,6 @@ import { StackNavigator } from 'react-navigation';
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Title, Button, Left, Right } from 'native-base';
-
 import { Fighters } from './data/fighters.js';
 
 class CharacterSelect extends Component {
@@ -29,8 +28,6 @@ class CharacterSelect extends Component {
       );
     });
 
-    // Decide between a list thumbnail, button, or list.
-
     return (
       <Container>
         <Header>
@@ -52,6 +49,7 @@ class CharacterSelect extends Component {
   }
 }
 
+
 class FighterDetail extends Component {
   static navigationOptions = {
     header: null,
@@ -60,6 +58,17 @@ class FighterDetail extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { fighter } = this.props.navigation.state.params;
+    let rows = [];
+    let fighters = fighter[this.props.fighterIndex];
+    let { metadata } = fighter.data;
+    fighter.data.forEach((move, i) => {
+        rows.push(
+          <View key={i}>
+            <Text>{ move.metadata }</Text>
+          </View>
+        );
+    });
+
     return (
       <Container>
         <Header>
@@ -74,6 +83,9 @@ class FighterDetail extends Component {
           <Right/>
         </Header>
         <Content>
+          <Text>
+            {metadata.health}
+          </Text>
         </Content>
       </Container>
     )
@@ -84,14 +96,6 @@ const styles = StyleSheet.create({
     view: {
         marginLeft: 250,
     },
-    cardHeader: {
-        marginTop: 15,
-        fontSize: 20
-    },
-    cardBalance: {
-        fontSize: 15,
-        textAlign: 'center'
-    }
 });
 
 export const App = StackNavigator({
