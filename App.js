@@ -58,15 +58,10 @@ class FighterDetail extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { fighter } = this.props.navigation.state.params;
-    let rows = [];
-    let fighters = fighter[this.props.fighterIndex];
     let { metadata } = fighter.data;
-    fighter.data.forEach((move, i) => {
-        rows.push(
-          <View key={i}>
-            <Text>{ move.metadata }</Text>
-          </View>
-        );
+    let frameData;
+    Object.keys(fighter.data.attacks).forEach((attackName) => {
+      let frameData = fighter.data.attacks[attackName];
     });
 
     return (
@@ -85,6 +80,7 @@ class FighterDetail extends Component {
         <Content>
           <Text>
             {metadata.health}
+            {frameData}
           </Text>
         </Content>
       </Container>
