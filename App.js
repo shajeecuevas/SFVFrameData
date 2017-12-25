@@ -61,12 +61,14 @@ class FighterDetail extends Component {
     let rows = [];
     let { metadata } = fighter.data;
     let data = Object.keys(fighter.data.attacks).map((attackName) => {
-      let frameData = fighter.data.attacks[attackName];
+    let frameData = fighter.data.attacks[attackName];
       return(
         <ListItem>
           <Body>
             <Text>Attack Name: {attackName}</Text>
-            <Text>Active Frames: {framaData.frames.active}</Text>
+            <Text>Startup: {frameData.frames.startup}</Text>
+            <Text>Active: {frameData.frames.active}</Text>
+            <Text>Recovery: {frameData.frames.recovery}</Text>
           </Body>
         </ListItem>
       )
